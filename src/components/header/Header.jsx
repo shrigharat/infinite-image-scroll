@@ -5,8 +5,9 @@ import {
   InputRightElement,
   VStack,
 } from "@chakra-ui/react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { ImagesContext } from "../../contexts/imagesContext";
+import useClickOutside from "../../hooks/useClickOutside";
 import "./Header.styles.scss";
 
 const Header = () => {
@@ -19,12 +20,15 @@ const Header = () => {
     setShowSeachHistory,
   } = useContext(ImagesContext);
 
+  const searchHistoryRef = useRef();
+  useClickOutside(searchHistoryRef, () => setShowSeachHistory(false));
+
   console.log({ searchText });
   return (
     <header className="search-header">
       <h1>Search Photos</h1>
       <div className="search-container">
-        <InputGroup position={"relative"}>
+        <InputGroup position={"relative"} ref={searchHistoryRef}>
           <Input
             backgroundColor="#f1f1f1"
             borderRadius="2rem"
@@ -35,6 +39,7 @@ const Header = () => {
             }}
             width="100%"
             className="search-input"
+            onClick={() => setShowSeachHistory(true)}
             onFocus={() => setShowSeachHistory(true)}
             // onBlur={() => setShowSeachHistory(false)}
             onKeyUp={(e) => {
@@ -72,7 +77,7 @@ const Header = () => {
                     padding=".3rem .7rem"
                     onClick={(e) => {
                       console.log("Clicked on search history item");
-                      setSearchText(name)
+                      setSearchText(name);
                     }}
                   >
                     {name}

@@ -14,7 +14,7 @@ const CardGrid = () => {
       opacity: 1,
       y: 0,
       transition: {
-        staggerChildren: 0.3,
+        staggerChildren: 0.1,
       },
     },
   };

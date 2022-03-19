@@ -1,21 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { ImagesContext } from "../../contexts/imagesContext";
 import "./ImageModal.styles.scss";
 import LeftIcon from "../../assets/icons/chevron-left.png";
 import RightIcon from "../../assets/icons/chevron-right.png";
+import useClickOutside from "../../hooks/useClickOutside";
 
 const ImageModal = () => {
   const { images, currentImage, setShowImageModal } = useContext(ImagesContext);
   const [imageIndex, setImageIndex] = useState(currentImage);
   console.log({ imageIndex });
 
+  const modalContentRef = useRef();
+  useClickOutside(modalContentRef, () => setShowImageModal(false));
+
   return (
     <div className="image-modal">
       <div
         className="modal-overlay"
-        onClick={() => setShowImageModal(false)}
+        // onClick={() => setShowImageModal(false)}
       ></div>
-      <div className="modal-content">
+      <div className="modal-content" ref={modalContentRef}>
         {imageIndex > 0 ? (
           <div
             className="prev-button"

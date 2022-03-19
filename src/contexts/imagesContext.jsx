@@ -27,16 +27,19 @@ const ImagesProvider = ({ children }) => {
   const observer = useRef();
 
   //callback to set intersection observer to the last element in list
-  const lastElementRef = useCallback((node) => {
-    if (loading) return;
-    if (observer.current) observer.current.disconnect();
-    observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && hasMore) {
-        setCurrPage((prev) => prev + 1);
-      }
-    });
-    if (node) observer.current.observe(node);
-  });
+  const lastElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setCurrPage((prev) => prev + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
 
   //whenever search text is updated reset pagination index to 1
   useEffect(() => {
@@ -53,7 +56,7 @@ const ImagesProvider = ({ children }) => {
     };
   };
 
-  //store current searchhistory to localstorage
+  //store current search history to localstorage
   useEffect(() => {
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
   }, [searchHistory]);
