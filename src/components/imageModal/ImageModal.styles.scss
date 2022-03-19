@@ -1,0 +1,114 @@
+.image-modal {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  font-size: 4rem;
+  z-index: 3;
+  top: 0;
+  left: 0;
+
+  .modal-overlay {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1;
+  }
+
+  .modal-content {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 62vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    transform: translate(50%, 35%);
+
+    .prev-button,
+    .next-button {
+      position: static;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background-color: gray;
+      color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 4;
+    }
+
+    .image-container {
+      width: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: auto;
+        height: 60vh;
+        outline: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .image-modal {
+    .modal-content {
+      width: 80%;
+      transform: translate(12.5%, 35%);
+
+      .prev-button,
+      .next-button {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+
+      .image-container {
+        width: 400px;
+        img {
+          width: auto;
+          height: auto;
+          max-height: 60vh;
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .image-modal {
+    .modal-content {
+      width: 85%;
+      transform: translate(9%, 50%);
+      height: 52vh;
+
+      .prev-button,
+      .next-button {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .image-container {
+        width: 320px;
+        img {
+          width: auto;
+          height: auto;
+          max-height: 50vh;
+          outline: none;
+        }
+      }
+    }
+  }
+}
