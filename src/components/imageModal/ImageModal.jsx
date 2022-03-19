@@ -8,7 +8,6 @@ import useClickOutside from "../../hooks/useClickOutside";
 const ImageModal = () => {
   const { images, currentImage, setShowImageModal } = useContext(ImagesContext);
   const [imageIndex, setImageIndex] = useState(currentImage);
-  console.log({ imageIndex });
 
   const modalContentRef = useRef();
   useClickOutside(modalContentRef, () => setShowImageModal(false));

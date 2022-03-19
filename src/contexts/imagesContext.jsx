@@ -63,7 +63,7 @@ const ImagesProvider = ({ children }) => {
 
   //Get appropriate API Call parameters
   const getArguments = () => {
-    const apiKey = "a6fa0f471a02b72fa33f51f2011e1c0e";
+    const apiKey = process.env.REACT_APP_MY_FLICKR_KEY;
     return {
       method: searchText ? "flickr.photos.search" : "flickr.photos.getRecent",
       api_key: apiKey,

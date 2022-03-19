@@ -23,7 +23,6 @@ const Header = () => {
   const searchHistoryRef = useRef();
   useClickOutside(searchHistoryRef, () => setShowSeachHistory(false));
 
-  console.log({ searchText });
   return (
     <header className="search-header">
       <h1>Search Photos</h1>
@@ -76,7 +75,6 @@ const Header = () => {
                     _hover={{ backgroundColor: "#bdbdbd" }}
                     padding=".3rem .7rem"
                     onClick={(e) => {
-                      console.log("Clicked on search history item");
                       setSearchText(name);
                     }}
                   >
